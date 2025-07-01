@@ -3,7 +3,7 @@
   flex-direction: column;
   margin: auto;
   margin-top: 2%;
-  background-color: darkturquoise;
+  background-color: rgb(106, 147, 185);
   min-width: 350px;
   width: 30%;
 }
@@ -62,4 +62,11 @@
   border-radius:50px;
   text-align:center;
   box-shadow: 2px 2px 3px #999;  
+}
+.cross{
+    color: red;
+}
+
+.text{
+    align-items: center;
 }
