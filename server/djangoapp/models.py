@@ -3,8 +3,8 @@
 from django.db import models
 from django.utils.timezone import now
 from django.core.validators import MaxValueValidator, MinValueValidator
-# from django.contrib import admin
-# from .models import CarMake, CarModel
+from django.contrib import admin
+#from .models import CarMake, CarModel
 
 # Registering models with their respective admins
 # admin.site.register(CarMake)
@@ -33,24 +33,24 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 
+
 class CarModel(models.Model):
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
-    name = models.CharField(max_length=100)
-    CAR_TYPES = [
-        ('SEDAN', 'Sedan'),
-        ('SUV', 'SUV'),
-        ('WAGON', 'Wagon'),
-        ('SPORT', 'Sport'),
-        ('COUPE', 'Coupe')
-        # Add more choices as required
-    ]
-    type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
-    year = models.IntegerField(default=2023,
-        validators=[
-            MaxValueValidator(2023),
-            MinValueValidator(2015)
-        ])
-    # Other fields as needed
+    make = models.ForeignKey(CarMake, null=True, on_delete = models.CASCADE)
+
+    dealer_id = models.IntegerField()
+    name = models.CharField(max_length=255)
+    SEDAN = "Sedan"
+    SUV = "SUV"
+    WAGON = "WAGON"
+    TYPE_CHOICES = (
+        (SEDAN, "Sedan"),
+        (SUV, "SUV"),
+        (WAGON, "Wagon"),
+    )
+    model_type  = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    year = models.DateField()
 
     def __str__(self):
-        return self.name  # Return the name as the string representation
+        return f"{self.make} {self.name} ({self.year})"
+
+      
